@@ -1,0 +1,129 @@
+/*
+Theme Name: ppp theme
+Author: Elliot Williamson
+Description: theme for a job search web page
+Version: 1.0
+Requires at least: 5.9
+Tested up to: 5.9
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: ppptheme
+*/
+body,html{
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+}
+body{
+    display: flex;
+    flex-direction: column;
+}
+body > h1{
+    font-size: 34px;
+}
+h1{
+    font-size: 24px;
+}
+button{
+    border-radius: 5px;
+    background-color: #001b36;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 30px;
+    cursor: pointer;
+    color: #fff;
+    outline: 2px dashed transparent;
+}
+
+input{
+    display: block;
+    width: 300px;
+    outline: 2px dashed transparent;
+}
+
+button:hover{
+    background-color: #59b5c6;
+}
+
+button:focus{
+    outline-color: black;
+}
+
+input:focus{
+    outline-color: black;
+}
+header,footer{
+    padding: 15px 0px;
+    background-color: #59b5c6;
+    color: white;
+    text-align: center;
+}
+
+footer,header h1{
+    color: white !important;
+}
+.auth-form{
+    width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+nav{
+    margin-top: 15px;
+}
+
+nav a{
+    display: block;
+    text-align: center;
+}
+
+select{
+    display: block;
+    width: 300px;
+}
+
+.create-user-form{
+    width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.user-summary{
+    background-color: #59b5c6;
+    color: #fff;
+    margin-bottom: 15px;
+    padding: 15px;
+    width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.user-summary button{
+    margin-top: 15px;
+}
+
+footer{
+    margin-top: auto;
+}
+
+.logout{
+    color: white !important;
+    background: gray !important;
+    display: inline-block !important;
+    width: 120px !important;
+    padding: 5px 0 !important;
+    cursor: pointer !important;
+}
+
+.logout:hover{
+    color: blue !important;
+    background: white !important;
+}
+
+.pagination a{
+    padding: 8px;
+    background-color: #59b5c6;
+}

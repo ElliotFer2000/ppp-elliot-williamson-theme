@@ -1,0 +1,3 @@
+<?php 
+    $MESSAGE_ERROR = "";
+?>
