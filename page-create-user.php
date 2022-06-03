@@ -12,7 +12,7 @@ if(is_user_logged_in(  ) && in_array('bolsa',$roles)){
           'user_email' => $email,
           'first_name' => $first_name,
           'last_name' => $last_name,
-          'display_name' => "$username $last_name",
+          'display_name' => "$first_name $last_name",
           'role' => strtolower($role)
       ));
             
@@ -33,16 +33,20 @@ if(is_user_logged_in(  ) && in_array('bolsa',$roles)){
   $email = $_POST["email"];
 
   if($degree && $username && $type && $pwd){
-      $user_id = new_user($first_name,$last_name,$username,$password,$email,$degree,$type);
+      $user_id = new_user($first_name,$last_name,$username,$pwd,$email,$degree,$type);
   }
 
  
   if ( ! is_wp_error( $user_id ) ) {
     echo "<h1 style='text-align: center;'>El usuario ha sido creado</h1>";
   }else{
-
+    
      if(isset($user_id->errors['existing_user_login'])){
+        echo "<h1 style='text-align: center;'>Ha habido un error, el usuario no fue creado</h1>";
         echo "<h1 style='text-align: center;'>Error: El nombre de usuario $username ya existe</h1>";
+     }else if(isset($user_id->errors['existing_user_email'])){
+        echo "<h1 style='text-align: center;'>Ha habido un error, el usuario no fue creado</h1>";
+        echo "<h1 style='text-align: center;'>Error: El correo electronico $email ya esta siendo usado</h1>";
      }else{
        var_dump($user_id);
      }

@@ -27,7 +27,7 @@ async function sendApprove(to,message,name_to,position){
 async function sendReject(to,message,name_to,position){
     const result = await emailjs.send("service_fve8q39","template_hzmapue",{
           to_name: name_to,
-          message:  "Aplicación para el cargo de: " + position + "\r\n" + message,
+          message:  "Aplicación para el cargo de: " + position + ": " + message,
           to_email: to,
      });
   
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded",function() {
     const btnApply = document.querySelector("#apply");
     const cvUrl =  document.querySelector("#cv_url");
     const apps = document.querySelector("#aplicaciones");
-
+    //XzFZmdCIJgthNrKU
     if(btnApply){
         btnApply.addEventListener("click",async function(evt) {          
             try{
@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded",function() {
                     a.setAttribute("target","_blank");
                     a.setAttribute("style","color: white; background: black; box-shadow: 1px 1px 2px gray;")
    
-                    li1.textContent = `Correo Electronico: ${job.candidate_email}`;
+                    li1.textContent = `Correo Electrónico: ${job.candidate_email}`;
                     li2.textContent = `Nombre Completo: ${job.candidate_name}`;
                     li3.appendChild(a);
    
@@ -146,26 +146,36 @@ document.addEventListener("DOMContentLoaded",function() {
                     wrapperRadio.setAttribute("style","display: grid; grid-template-columns: 50px auto;")
                     form.appendChild(wrapperRadio);
                     submit.setAttribute("style","margin-top: 5px");
-   
+
+                    const dialog = document.createElement("div");
+                    dialog.setAttribute("style","display:flex; align-items: center;  justify-content: center; width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; background: white; z-index: 10000;")
+                    dialog.innerHTML = "<p>Procesando solicitud, porfavor espere....</p>";
                     submit.addEventListener("click",async function(evt) {
                         evt.preventDefault();
-                        document.querySelector("#aplicaciones").innerHTML = "<p style='text-align: center'>Procesando solicitud, porfavor espere...</p>";
-                     
+                
+                        document.body.appendChild(dialog);
                         try{
+                            
                            await updateDoc(jobRef,{
                                    status: document.querySelector('input[name="calificar"]:checked').value
                            });
                            if(document.querySelector('input[name="calificar"]:checked').value === "ACCEPT"){
                                const res = await sendApprove(job.candidate_email,emailTextArea.value,job.candidate_name,resJson.title.rendered);
+                               dialog.innerHTML = "<p>Has aprobado la solicitud</p>";
                                alert("Has aceptado esta aplicación, se enviará un correo electrónico notificando al aplicante");
                                window.location.href = "/"
                            }else if(document.querySelector('input[name="calificar"]:checked').value === "REJECT"){
+                                
+                               console.log(emailTextArea.value);
                                const res = await sendReject(job.candidate_email,emailTextArea.value,job.candidate_name,resJson.title.rendered);
+                               dialog.innerHTML = "<p>Has rechazado la solicitud</p>";
                                alert("Has rechazado esta aplicación, se enviará un correo electrónico notificando al aplicante");
                                window.location.href = "/"
+                               console.log(res);
+                               
                            }
                         }catch(err){
-                           console.log(err);
+                           dialog.innerHTML = "<p>Ha ocurrido un error, intenta de nuevo</p>";
                            alert("ha ocurrido un error, intenta realizar la acción nuevamente");
                            window.location.href = "/aplicaciones"
                         }

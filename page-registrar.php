@@ -28,24 +28,24 @@
     <section class="create-user-form" style="margin-bottom: 60px">
         <form action="/create-user" method="POST" enctype="multipart/form-data">
             <p>
-                <label for="user">Usuario: </label>
-                <input type="text" name="user" id="user"/>
+                <label for="user">Usuario:* </label>
+                <input type="text" name="user" id="user" required/>
             </p>
             <p>
-                <label for="nombre">Nombre: </label>
-                <input type="text" name="nombre" id="nombre"/>
+                <label for="nombre">Nombre:* </label>
+                <input type="text" name="nombre" id="nombre" required/>
             </p>
             <p>
-                <label for="apellido">Apellido: </label>
-                <input type="text" name="apellido" id="apellido"/>
+                <label for="apellido">Apellido:* </label>
+                <input type="text" name="apellido" id="apellido" required/>
             </p>
             <p>
-                <label for="email">Email: </label>
-                <input type="email" name="email" id="email"/>
+                <label for="email">Email:* </label>
+                <input type="email" name="email" id="email" required/>
             </p>
             <p>
-                <label for="carrera">Carrera de interés: </label>
-                <select name="carrera" id="carrera">
+                <label for="carrera">Carrera de interés:* </label>
+                <select name="carrera" id="carrera" required>
                     <option value="Ingeniería en Sistemas">Ingenieria en Sistemas de Informacion</option>
                     <option value="Ingeniería Industrial">Ingeniería Industrial</option>
                     <option value="Ingeniería Ambiental">Ingeniería Industrial</option>
@@ -59,18 +59,19 @@
                     <option value="Economía">Economía</option>
                     <option value="Administración de Empresas">Administración de Empresas</option>
                     <option value="Diseño Gráfico">Diseño Gráfico</option>
+                    <option value="Diseño Gráfico">Otro</option>
                 </select>
             </p>
             <p>
-                <label for="carrera">Tipo de Usuario: </label>
-                <select name="tipo" id="tipo">
+                <label for="carrera">Tipo de Usuario:* </label>
+                <select name="tipo" id="tipo" required>
                     <option value="oferente">Oferente</option>
                     <option value="aplicante">Aplicante</option>
                 </select>
             </p>
             <p>
-                <label for="password">Contraseña</label>
-                <input type="password" name="password" id="password"/>
+                <label for="password">Contraseña:*</label>
+                <input type="password" name="password" id="password" required/>
             </p>
             <button type="submit">Guardar</button>
         </form>

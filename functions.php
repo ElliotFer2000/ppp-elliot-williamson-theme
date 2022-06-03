@@ -1,5 +1,8 @@
 <?php
-wp_enqueue_style("style",get_stylesheet_uri());
+
+if(!is_admin()){
+    wp_enqueue_style("style",get_stylesheet_uri());
+}
 wp_enqueue_script('index', get_template_directory_uri() . '/assets/scripts/dist/index.js', '1.0.0');
 add_action('admin_head', 'admin_styles');  
 function admin_styles() {

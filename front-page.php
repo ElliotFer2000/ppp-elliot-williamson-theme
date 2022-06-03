@@ -4,6 +4,7 @@
     if(is_user_logged_in(  )){
         $roles = get_user_roles(get_current_user_id());
     }
+
 ?>
 
 <?php if(!is_user_logged_in(  )){ ?>

@@ -7,15 +7,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Bienvenido</title>
         <?php 
-            if(!is_user_logged_in(  ) && is_page("auth-user")){
+            if((!is_user_logged_in(  )) && is_page("auth-user")){
                 $wp_auth_result = wp_signon();
-                if(get_class($wp_auth_result) == "WP_Error"){
+                if(get_class($wp_auth_result) === "WP_Error"){
                     $MESSAGE_ERROR = "<p style='text-align: center'>Autenticacion fallida, asegurate de usar el usuario y contraseña correctos</p> <p style='text-align: center'><a href='/'>Volver a inicio</a></p>";
                 }else{
                     wp_redirect( home_url() ); 
                     exit;
                 }
-            }else{
+            }else if(is_user_logged_in() && is_page("auth-user")){
                 $MESSAGE_ERROR = "<p style='text-align: center'>Ya tienes una sesión iniciada</p> <p style='text-align: center'><a href='/'>Volver a inicio</a></p>";
             }
         ?>
@@ -44,6 +44,7 @@
                     echo "<a href='/wp-admin/edit.php?post_type=ofertas'>Ir al dashboard</a>";
                     echo "<a href='/aplicaciones'>Ver aplicaciones</a>";
                 }
+                
                 if(is_user_logged_in() && in_array('bolsa',$roles)){
                     echo "<a href='/registrar'>Registrar usuarios</a>";
                     echo "<a href='/usuarios' style='margin-bottom: 15px;'>Ver Usuarios</a>";
@@ -52,5 +53,7 @@
                 if(is_user_logged_in(  )){
                     echo '<a href="/logout">Cerrar Sesión</a>';
                 }
+
+                echo $MESSAGE_ERROR;
             ?>
         </nav>

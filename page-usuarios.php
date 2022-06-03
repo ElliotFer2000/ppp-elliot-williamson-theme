@@ -20,10 +20,11 @@ $roles = get_user_roles(get_current_user_id());
             if ( ! empty( $user_query->get_results() ) ) {
                 
                 foreach ( $user_query->get_results() as $user ) {
+                    $role = $user->roles[0];
                     $form_delete = <<<EOT
                     <section class='user-summary'>
                         <h1>$user->display_name</h1>
-                        <p>Rol: $user->roles[0]</p>
+                        <p>Rol: $role </p>
                         <p>Usuario: $user->user_login</p>
                         <form method="POST" action="/delete-user">
                             <input type="hidden" value="$user->id" name="user-id"/>
